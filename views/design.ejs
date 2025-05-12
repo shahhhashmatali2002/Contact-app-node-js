@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard Layout with Clickable Dropdowns</title>
+    <style>
+        body {
+            display: flex;
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 250px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            margin-top: 0;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin: 10px 0;
+            cursor: pointer;
+            position: relative;
+        }
+
+        /* Dropdown */
+        .dropdown-content {
+            display: none;
+            padding-left: 15px;
+            margin-top: 5px;
+            list-style: disc !important;
+            padding-left: 30px !important;
+        }
+
+        /* Header */
+        .header {
+            /* width: 100%; */
+            background-color: #555;
+            color: #fff;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex-grow: 1;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="sidebar">
+        <h2>Logo</h2>
+        <ul>
+            <li>
+                <span onclick="toggleDropdown('rawDataAnalytics')">Raw Data Analytics</span>
+                <ul id="rawDataAnalytics" class="dropdown-content" onclick="toggleDropdown('rawDataAnalyticsFields')">
+                    <li>Field Data</li>
+                    <li>Table Data</li>
+                    <li>Dataset Train</li>
+                    <li>Data Visualize</li>
+                    <li>Data Process</li>
+                </ul>
+            </li>
+            <li>
+                <span onclick="toggleDropdown('predictionRawData')"> Prediction on Raw Data </span>
+                <ul id="predictionRawData" class="dropdown-content" onclick="toggleDropdown('predictionRawDataFields')">
+                    <li>Sub-item 1</li>
+                    <li>Sub-item 2</li>
+                    <li>Sub-item 3</li>
+                </ul>
+            </li>
+            <li>
+                <span onclick="toggleDropdown('classificationModels')">Classification Models</span>
+                <ul id="classificationModels" class="dropdown-content" onclick="toggleDropdown('classificationModelsFields')">
+                    <li>Model Type 1</li>
+                    <li>Model Type 2</li>
+                    <li>Model Type 3</li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="header">
+            <span>Profile Icon</span>
+        </div>
+        <div class="dashboard-content">
+            <!-- Main dashboard content goes here -->
+            <h1>Dashboard</h1>
+        </div>
+    </div>
+
+    <script>
+        function toggleDropdown(id) {
+            debugger
+            let elementId = ''
+            if(id.includes('Fields')){
+                elementId = id.split('Fields')[0]
+                const dropdown = document.getElementById(elementId)
+                dropdown.style.display = 'block'
+                return 'Done'
+            }else{
+                elementId = id
+            }
+            const dropdown = document.getElementById(elementId);
+            
+            if (dropdown.style.display === "block") {
+                dropdown.style.display = "none";
+            } else {
+                dropdown.style.display = "block";
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,21 +1,25 @@
-import express from "express"
-const app = express()
-import ContactRoutes from "./routes/contacts.routes.js"
-import { connectDB } from "./config/database.js"
+import express from 'express'
+import { connectDB } from './config/database.js'
+import ContactRoutes from './routes/contact-routes.js'
 
+const app = express()
 const PORT = process.env.PORT
 
-// Database Connection
+
+// Database Connection 
 connectDB()
 
-// Middleware
+// Middleware 
 app.set('view engine', 'ejs')
-app.use(express.urlencoded({extended:false}))
+app.use(express.urlencoded({extended: false}))
 app.use(express.static('public'))
 
 // Routes
-app.use("/",ContactRoutes)
+app.use(ContactRoutes)
 
-app.listen(PORT, () => {
-  console.log(`Server started Successfully on port ${PORT}.`)
+
+
+
+app.listen(PORT,() => {
+    console.log(`Server is running on port ${PORT}`)
 })
